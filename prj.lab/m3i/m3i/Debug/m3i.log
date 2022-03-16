@@ -1,0 +1,12 @@
+﻿  m3i.cpp
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(8): error C3260: ';': skipping unexpected token(s) before lambda body
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(12): error C4573: the usage of 'm3i::coordinates' requires the compiler to capture 'this' but the current default capture mode does not allow it
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(13): error C4573: the usage of 'm3i::values' requires the compiler to capture 'this' but the current default capture mode does not allow it
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(12): error C2065: 'coordinates': undeclared identifier
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(12): error C2065: 'copy': undeclared identifier
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(13): error C2065: 'values': undeclared identifier
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(13): error C2065: 'copy': undeclared identifier
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(17): error C3863: array type 'int [3]' is not assignable
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(17): error C2143: syntax error: missing ';' before 'inline function header'
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(18): error C3863: array type 'int [3]' is not assignable
+c:\my programs\занятия мфти\6_sem\кафедра\kutakova_a_p\prj.lab\m3i\m3i\m3i.cpp(47): fatal error C1004: unexpected end-of-file found
