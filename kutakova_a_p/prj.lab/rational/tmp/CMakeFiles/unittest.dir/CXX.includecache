@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/rational/rational.h
+iostream
+-
+
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/rational/unittest.cpp
+rational.h
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/rational/rational.h
+cassert
+-
+iostream
+-
+
