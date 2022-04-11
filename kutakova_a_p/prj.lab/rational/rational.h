@@ -1,8 +1,6 @@
-#pragma once
-
 #include <iostream>
 
-class __declspec(dllexport) Rational {
+class Rational {
 public:
     Rational(const int num, const int den = 1);
     Rational(const int num);
@@ -17,7 +15,7 @@ public:
 
 
     Rational operator-();
-    //Rational& operator=(const Rational& right);
+    Rational& operator=(const Rational& right);
     Rational& operator=(Rational& right);
 
     int num() const;
@@ -35,27 +33,24 @@ public:
 
 private:
     int numerator = 0;
-    int denominator = 1; // знаменатель >0
+    int denominator = 1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ >0
     int NOD(int a, int b);
     void normalize();
 };
 
-Rational operator+(const Rational& left, const Rational& right)
+inline Rational operator+(const Rational& left, const Rational& right)
 {
     return Rational(left) += right;
 }
-//inline Rational operator-(const Rational& left, const Rational& right);
-//inline Rational operator*(const Rational& left, const Rational& right);
-//inline Rational operator/(const Rational& left, const Rational& right);
-Rational operator-(const Rational& left, const Rational& right)
+inline Rational operator-(const Rational& left, const Rational& right)
 {
     return Rational(left) -= right;
 }
-Rational operator*(const Rational& left, const Rational& right)
+inline Rational operator*(const Rational& left, const Rational& right)
 {
     return Rational(left) *= right;
 }
-Rational operator/(const Rational& left, const Rational& right)
+inline Rational operator/(const Rational& left, const Rational& right)
 {
     return Rational(left) /= right;
 }
