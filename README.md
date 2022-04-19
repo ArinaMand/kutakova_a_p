@@ -1,1 +1,0 @@
-# kutakova_a_p

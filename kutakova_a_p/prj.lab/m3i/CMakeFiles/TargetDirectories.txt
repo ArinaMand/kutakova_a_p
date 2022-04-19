@@ -1,0 +1,4 @@
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/CMakeFiles/rebuild_cache.dir
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/CMakeFiles/edit_cache.dir
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/CMakeFiles/m3i.dir
+/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/CMakeFiles/test.dir

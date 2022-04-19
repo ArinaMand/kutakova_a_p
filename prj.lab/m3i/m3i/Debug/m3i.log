@@ -1,4 +1,0 @@
-﻿  m3i.cpp
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\sal.h(2361): error C2059: syntax error: 'string'
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\sal.h(2361): error C2143: syntax error: missing ';' before '{'
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\sal.h(2361): error C2447: '{': missing function header (old-style formal list?)
