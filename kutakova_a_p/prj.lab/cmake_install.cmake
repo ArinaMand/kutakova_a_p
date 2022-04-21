@@ -1,4 +1,4 @@
-# Install script for directory: /home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i
+# Install script for directory: /home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,12 @@ endif()
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/rational/cmake_install.cmake")
+  include("/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/cmake_install.cmake")
+
 endif()
 

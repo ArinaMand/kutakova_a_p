@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(CMAKE_COMMAND) -E cmake_progress_start /home/arina/cafedra/kutakova_a_p/kutakova_a_p/CMakeFiles /home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/m3i/CMakeFiles/progress.marks
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/all
+	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(CMAKE_COMMAND) -E cmake_progress_start /home/arina/cafedra/kutakova_a_p/kutakova_a_p/CMakeFiles /home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/CMakeFiles/progress.marks
+	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arina/cafedra/kutakova_a_p/kutakova_a_p/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/clean
+	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,102 +97,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/preinstall
+	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/preinstall
+	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-prj.lab/m3i/CMakeFiles/m3i.dir/rule:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/CMakeFiles/m3i.dir/rule
-.PHONY : prj.lab/m3i/CMakeFiles/m3i.dir/rule
-
-# Convenience name for target.
-m3i: prj.lab/m3i/CMakeFiles/m3i.dir/rule
-
-.PHONY : m3i
-
-# fast build rule for target.
-m3i/fast:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/m3i.dir/build.make prj.lab/m3i/CMakeFiles/m3i.dir/build
-.PHONY : m3i/fast
-
-# Convenience name for target.
-prj.lab/m3i/CMakeFiles/test.dir/rule:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f CMakeFiles/Makefile2 prj.lab/m3i/CMakeFiles/test.dir/rule
-.PHONY : prj.lab/m3i/CMakeFiles/test.dir/rule
-
-# Convenience name for target.
-test: prj.lab/m3i/CMakeFiles/test.dir/rule
-
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/test.dir/build.make prj.lab/m3i/CMakeFiles/test.dir/build
-.PHONY : test/fast
-
-m3i.o: m3i.cpp.o
-
-.PHONY : m3i.o
-
-# target to build an object file
-m3i.cpp.o:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/m3i.dir/build.make prj.lab/m3i/CMakeFiles/m3i.dir/m3i.cpp.o
-.PHONY : m3i.cpp.o
-
-m3i.i: m3i.cpp.i
-
-.PHONY : m3i.i
-
-# target to preprocess a source file
-m3i.cpp.i:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/m3i.dir/build.make prj.lab/m3i/CMakeFiles/m3i.dir/m3i.cpp.i
-.PHONY : m3i.cpp.i
-
-m3i.s: m3i.cpp.s
-
-.PHONY : m3i.s
-
-# target to generate assembly for a file
-m3i.cpp.s:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/m3i.dir/build.make prj.lab/m3i/CMakeFiles/m3i.dir/m3i.cpp.s
-.PHONY : m3i.cpp.s
-
-test.o: test.cpp.o
-
-.PHONY : test.o
-
-# target to build an object file
-test.cpp.o:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/test.dir/build.make prj.lab/m3i/CMakeFiles/test.dir/test.cpp.o
-.PHONY : test.cpp.o
-
-test.i: test.cpp.i
-
-.PHONY : test.i
-
-# target to preprocess a source file
-test.cpp.i:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/test.dir/build.make prj.lab/m3i/CMakeFiles/test.dir/test.cpp.i
-.PHONY : test.cpp.i
-
-test.s: test.cpp.s
-
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.cpp.s:
-	cd /home/arina/cafedra/kutakova_a_p/kutakova_a_p && $(MAKE) -f prj.lab/m3i/CMakeFiles/test.dir/build.make prj.lab/m3i/CMakeFiles/test.dir/test.cpp.s
-.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -202,14 +118,6 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... m3i"
-	@echo "... test"
-	@echo "... m3i.o"
-	@echo "... m3i.i"
-	@echo "... m3i.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
 .PHONY : help
 
 
