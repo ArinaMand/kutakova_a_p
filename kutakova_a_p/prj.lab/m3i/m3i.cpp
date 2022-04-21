@@ -95,8 +95,3 @@ M3i& M3i::operator=(M3i&& copy) {
     return *this;
 }
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
-
-}

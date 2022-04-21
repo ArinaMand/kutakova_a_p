@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/unittest.dir/unittest.cpp.o  -o unittest librational.a 
