@@ -9,7 +9,7 @@ Rational::Rational(const int num, const int den) : numerator(num), denominator(d
     }
     normalize();
 }
-Rational::Rational(const int num) : numerator(num), denominator(1) {};
+//Rational::Rational(const int num) : numerator(num), denominator(1) {};
 Rational::Rational() = default;
 Rational::Rational(const Rational& x) : numerator(x.numerator), denominator(x.denominator) {};
 Rational::Rational(Rational&& x) = default;
@@ -36,6 +36,28 @@ Rational& Rational::operator*=(const Rational& right) {
 Rational& Rational::operator/=(const Rational& right) {
     numerator = numerator * right.denominator;
     denominator *= right.numerator;
+    normalize();
+    return *this;
+};
+
+
+Rational& Rational::operator+=(const int& right) {
+    numerator = numerator + right*denominator;
+    normalize();
+    return *this;
+};
+Rational& Rational::operator-=(const int& right) {
+    numerator = numerator - right*denominator;
+    normalize();
+    return *this;
+};
+Rational& Rational::operator*=(const int& right) {
+    numerator = numerator * right;
+    normalize();
+    return *this;
+};
+Rational& Rational::operator/=(const int& right) {
+    denominator *= right;
     normalize();
     return *this;
 };
@@ -155,6 +177,40 @@ const Rational operator*(const Rational& left, const Rational& right)
     return Rational(left) *= right;
 }
 const Rational operator/(const Rational& left, const Rational& right)
+{
+    return Rational(left) /= right;
+}
+
+const Rational operator+(const Rational& left, const int& right)
+{
+    return Rational(left) += right;
+}
+const Rational operator-(const Rational& left, const int& right)
+{
+    return Rational(left) -= right;
+}
+const Rational operator*(const Rational& left, const int& right)
+{
+    return Rational(left) *= right;
+}
+const Rational operator/(const Rational& left, const int& right)
+{
+    return Rational(left) /= right;
+}
+
+const Rational operator+(const int& left, const Rational& right)
+{
+    return Rational(left)+=right;
+}
+const Rational operator-(const int& left, const Rational& right)
+{
+    return Rational(left) -= right;
+}
+const Rational operator*(const int& left, const Rational& right)
+{
+    return Rational(left) *= right;
+}
+const Rational operator/(const int& left, const Rational& right)
 {
     return Rational(left) /= right;
 }

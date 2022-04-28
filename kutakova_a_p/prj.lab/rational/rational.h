@@ -3,7 +3,7 @@
 class Rational {
 public:
     Rational(const int num, const int den = 1);
-    Rational(const int num);
+    //Rational(const int num);
     Rational();
     Rational(const Rational& x);
     Rational(Rational&& x);
@@ -14,6 +14,12 @@ public:
     Rational& operator*=(const Rational& right);
     Rational& operator/=(const Rational& right);
 
+//--------------------
+    Rational& operator+=(const int& right);
+    Rational& operator-=(const int& right);
+    Rational& operator*=(const int& right);
+    Rational& operator/=(const int& right);
+//-----------
 
     const Rational operator-();
     Rational& operator=(const Rational& right);
@@ -47,6 +53,15 @@ const Rational operator-(const Rational& left, const Rational& right);
 const Rational operator*(const Rational& left, const Rational& right);
 const Rational operator/(const Rational& left, const Rational& right);
 
+const Rational operator+(const Rational& left, const int& right);
+const Rational operator-(const Rational& left, const int& right);
+const Rational operator*(const Rational& left, const int& right);
+const Rational operator/(const Rational& left, const int& right);
+
+const Rational operator+(const int& left, const Rational& right);
+const Rational operator-(const int& left, const Rational& right);
+const Rational operator*(const int& left, const Rational& right);
+const Rational operator/(const int& left, const Rational& right);
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& r);
 std::istream& operator>>(std::istream& ostr, Rational& r);
