@@ -12,6 +12,7 @@ Rational::Rational(const int num, const int den) : numerator(num), denominator(d
 Rational::Rational(const int num) : numerator(num), denominator(1) {};
 Rational::Rational() = default;
 Rational::Rational(const Rational& x) : numerator(x.numerator), denominator(x.denominator) {};
+Rational::Rational(Rational&& x) = default;
 Rational::~Rational() = default;
 
 Rational& Rational::operator+=(const Rational& right) {
@@ -40,7 +41,7 @@ Rational& Rational::operator/=(const Rational& right) {
 };
 
 
-Rational Rational::operator-() {
+const Rational Rational::operator-() {
     return Rational(-numerator, denominator);
 };
 
@@ -50,7 +51,7 @@ Rational& Rational::operator=(const Rational& right) {
     return *this;
 };
 
-Rational& Rational::operator=(Rational& right) {
+Rational& Rational::operator=(Rational&& right) {
     numerator = right.numerator;
     denominator = right.denominator;
     return *this;
@@ -112,6 +113,48 @@ void Rational::normalize() {
     }
 };
 
+std::ostream& Rational::write_to(std::ostream& strm) const {
+    std::string str = std::to_string(numerator) + "/" + std::to_string(denominator);
+    strm << str;
+    return strm;
+}
 
-std::ostream& operator<<(std::ostream& ostr, const Rational& r);
-std::istream& operator>>(std::istream& ostr, Rational& r);
+std::istream& Rational::read_from(std::istream& strm) {
+    char c;
+    int numerator;
+    int denominator;
+    strm >> numerator >> std::noskipws >> c >> denominator >> std::skipws;
+    if (strm.fail()) {
+        return strm;
+    }
+    if (c != '/' || denominator <= 0) {
+        strm.setstate(std::ios_base::failbit);
+        return strm;
+    }
+    *this = Rational(numerator, denominator);
+    return strm;
+}
+
+std::ostream& operator<<(std::ostream& ostr, const Rational& r){
+    return r.write_to(ostr);
+}
+std::istream& operator>>(std::istream& ostr, Rational& r){
+    return r.read_from(ostr);
+}
+
+const Rational operator+(const Rational& left, const Rational& right)
+{
+    return Rational(left) += right;
+}
+const Rational operator-(const Rational& left, const Rational& right)
+{
+    return Rational(left) -= right;
+}
+const Rational operator*(const Rational& left, const Rational& right)
+{
+    return Rational(left) *= right;
+}
+const Rational operator/(const Rational& left, const Rational& right)
+{
+    return Rational(left) /= right;
+}

@@ -1,0 +1,4 @@
+project(m3i)
+add_library(m3i m3i.h m3i.cpp)
+add_executable(timer Timer.cpp)
+target_link_libraries(timer m3i)

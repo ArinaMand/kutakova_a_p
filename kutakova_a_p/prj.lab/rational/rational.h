@@ -6,6 +6,7 @@ public:
     Rational(const int num);
     Rational();
     Rational(const Rational& x);
+    Rational(Rational&& x);
     ~Rational();
 
     Rational& operator+=(const Rational& right);
@@ -14,9 +15,9 @@ public:
     Rational& operator/=(const Rational& right);
 
 
-    Rational operator-();
+    const Rational operator-();
     Rational& operator=(const Rational& right);
-    Rational& operator=(Rational& right);
+    Rational& operator=(Rational&& right);
 
     int num() const;
     int denum() const;
@@ -31,6 +32,9 @@ public:
 
     double toDouble();
 
+    std::ostream& write_to(std::ostream& strm) const;
+    std::istream& read_from(std::istream& strm);
+
 private:
     int numerator = 0;
     int denominator = 1; // ����������� >0
@@ -38,22 +42,10 @@ private:
     void normalize();
 };
 
-inline Rational operator+(const Rational& left, const Rational& right)
-{
-    return Rational(left) += right;
-}
-inline Rational operator-(const Rational& left, const Rational& right)
-{
-    return Rational(left) -= right;
-}
-inline Rational operator*(const Rational& left, const Rational& right)
-{
-    return Rational(left) *= right;
-}
-inline Rational operator/(const Rational& left, const Rational& right)
-{
-    return Rational(left) /= right;
-}
+const Rational operator+(const Rational& left, const Rational& right);
+const Rational operator-(const Rational& left, const Rational& right);
+const Rational operator*(const Rational& left, const Rational& right);
+const Rational operator/(const Rational& left, const Rational& right);
 
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& r);
