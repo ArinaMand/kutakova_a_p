@@ -1,6 +1,8 @@
 #include <iostream>
 
 class BitSet {
+private:
+    class BitHolder;
 public:
     BitSet();
     BitSet(const int length, const bool default_value=false);
@@ -36,8 +38,13 @@ private:
         BitHolder& operator=(BitHolder &&);
 
         operator bool() const;
+    private:
+        int num;
     };
     BitHolder holder;
+    int size;
+    int capacity;
+    int* data;
 };
 
 const BitSet operator|(const BitSet& first, const BitSet& second);

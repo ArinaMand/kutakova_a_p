@@ -6,11 +6,10 @@
 #include <cassert>
 
 int main(){
-    std::cout<<"sdfsdgsg";
-    std::fstream f;
-    f.open("Timer.txt");
+    printf("sjdfskjfnlk");
+    std::ofstream f ("Timer.txt", std::ofstream::out);
     if (!f.is_open()){
-        
+        printf("agagagagag");
     }
     const int ten = 10;
     int t = clock();

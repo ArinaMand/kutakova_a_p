@@ -1,6 +1,7 @@
 #include "rational.h"
 #include <iostream>
 #include <math.h>
+#include <string>
 
 Rational::Rational(const int num, const int den) : numerator(num), denominator(den)
 {
