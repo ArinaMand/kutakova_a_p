@@ -1,44 +1,74 @@
 #include "m3i.h"
 #include <iostream>
+#include <cstring>
+
+M3i::M3i(){
+    int c[3] = {0, 0, 0};
+    data = new Data(c, new int[0], 1);
+}
 
 M3i::M3i(const int x, const int y, const int z) {
-    coordinates[0] = x;
+    if (x<=0 || y<=0 || z<=0){
+        throw std::invalid_argument("invalid parameters");
+    }
+    int c[3] = {x, y, z};
+    /*coordinates[0] = x;
     coordinates[1] = y;
     coordinates[2] = z;
     box = new int[x*y*z];
-    ptr_counter = 0;
+    ptr_counter = 0;*/
+    data = new Data(c, new int[x*y*z], 1);
 }
-M3i::M3i(int x, int y, int z, int value) : M3i(x, y, z) {
+M3i::M3i(int x, int y, int z, int value) {
+    if (x<=0 || y<=0 || z<=0){
+        throw std::invalid_argument("invalid parameters");
+    }
     //Fill(value);
+    /*coordinates[0] = x;
+    coordinates[1] = y;
+    coordinates[2] = z;
+    box = new int[x*y*z];
+    ptr_counter = 0;*/
+    int c[3] = {x, y, z};
+    data = new Data(c, new int[x*y*z], 1);
     for (int i=0; i < x * y * z; ++i){
-        box[i] = value;
+        data->box[i] = value;
     }
 }
 M3i::M3i(const std::initializer_list<std::initializer_list<std::initializer_list<int>>>& list) {
-    coordinates[0] = (int)list.size();
+    /*coordinates[0] = (int)list.size();
     coordinates[1] = (int)list.begin()->size();
-    coordinates[2] = (int)list.begin()->begin()->size();
-    box = new int[coordinates[0]*coordinates[1]*coordinates[2]];
-    ptr_counter = 0;
-    int position = 0;
+    coordinates[2] = (int)list.begin()->begin()->size();*/
+    int c[3] = {(int)list.size(), (int)list.begin()->size(), (int)list.begin()->begin()->size()};
+    if (c[0] <=0 || c[1] <=0 || c[2] <=0){
+        throw std::invalid_argument("invalid parameters");
+    }
+    data = new Data(c, new int[c[0]*c[1]*c[2]], 1);
+    //box = new int[coordinates[0]*coordinates[1]*coordinates[2]];
+    //ptr_counter = 0;
+    int x=0;
     for (auto i : list) {
         for (auto j : i) {
             for (auto value : j) {
-                box[position] = value;
-                ++position;
+                //std::cout<<x<<y<<z<<"\n\r";
+                //std::cout<<x * (coordinates[1] * coordinates[2]) + y * coordinates[2] + z<<" : "<<value<<"\n\r";
+                data->box[x] = value;
+                ++x;
             }
         }
     }
 }
 M3i::M3i(const M3i& copy) {
-    coordinates[0] = copy.Size(0);
+    /*coordinates[0] = copy.Size(0);
     coordinates[1] = copy.Size(1);
     coordinates[2] = copy.Size(2);
     box = copy.box;
-    ptr_counter  = copy.ptr_counter + 1;
+    ptr_counter  = copy.ptr_counter + 1;*/
+    data = copy.data;
+    data->ptr_counter++;
 }
 M3i::M3i(M3i&& copy) {
-    coordinates[0] = copy.Size(0);
+    /*coordinates[0] = copy.Size(0);
     coordinates[1] = copy.Size(1);
     coordinates[2] = copy.Size(2);
     box = copy.box;
@@ -48,7 +78,9 @@ M3i::M3i(M3i&& copy) {
     copy.coordinates[1] = 0;
     copy.coordinates[2] = 0;
     copy.box = nullptr;
-    copy.ptr_counter = 0;
+    copy.ptr_counter = 0;*/
+    data = copy.data;
+    data->ptr_counter++;
 };
 
 
@@ -57,26 +89,27 @@ int& M3i::At(const int x, const int y, const int z)
     if (x >= Size(0) || x < 0 || y >= Size(1) || y < 0 || z >= Size(2) || z < 0) {
         throw std::invalid_argument("value out of range");
     }
-    return box[x * (coordinates[1] * coordinates[2]) + y * coordinates[2] + z];
+    //std::cout<<box[x * (coordinates[1] * coordinates[2]) + y * coordinates[2] + z]<<"\n\r";
+    return data->box[x * (data->coordinates[1] * data->coordinates[2]) + y * data->coordinates[2] + z];
 }
 int M3i::At(const int x, const int y, const int z) const
 {
     if (x >= Size(0) || x < 0 || y >= Size(1) || y < 0 || z >= Size(2) || z < 0) {
         throw std::invalid_argument("value out of range");
     }
-    return box[x * (coordinates[1] * coordinates[2]) + y * coordinates[2] + z];
+    return data->box[x * (data->coordinates[1] * data->coordinates[2]) + y * data->coordinates[2] + z];
 }
 M3i& M3i::Resize(const int x, const int y, const int z)//от трех значений, просто ставит новые данные
 {
     if (x <= 0 || y <= 0 || z <= 0) {
         throw std::invalid_argument("value out of range");
     }
-    int* old_box = box;
-    int old_coordinates[3] = { coordinates[0], coordinates[1], coordinates[2] };
-    coordinates[0] = x;
-    coordinates[1] = y;
-    coordinates[2] = z;
-    box = new int[x*y*z];
+    int* old_box = data->box;
+    int old_coordinates[3] = { data->coordinates[0], data->coordinates[1], data->coordinates[2] };
+    data->coordinates[0] = x;
+    data->coordinates[1] = y;
+    data->coordinates[2] = z;
+    data->box = new int[x*y*z];
     for (int i = 0; i < x; ++i) {
         for (int j = 0; j < y; ++j) {
             for (int k = 0; k < z; ++k) {
@@ -85,7 +118,7 @@ M3i& M3i::Resize(const int x, const int y, const int z)//от трех знач�
                 }
                 else {
                     At(i, j, k) = old_box[i*old_coordinates[1] * old_coordinates[2]
-                        + j * old_coordinates[2] + k];
+                                          + j * old_coordinates[2] + k];
                 }
             }
         }
@@ -98,7 +131,7 @@ int M3i::Size(const int dim) const//get size
     if (dim>2 || dim <0 ){
         throw std::invalid_argument("value out of range");
     }
-    return coordinates[dim];
+    return data->coordinates[dim];
 }
 void M3i::Fill(const int val) {
     for (int x = 0; x < Size(0); ++x) {
@@ -111,10 +144,10 @@ void M3i::Fill(const int val) {
 }//поставить всем одно значение
 
 M3i M3i::Clone() const {
-    M3i copy(coordinates[0], coordinates[1], coordinates[2]);
-    for (int x = 0; x < coordinates[0]; ++x) {
-        for (int y = 0; y < coordinates[1]; ++y) {
-            for (int z = 0; z < coordinates[2]; ++z) {
+    M3i copy(data->coordinates[0], data->coordinates[1], data->coordinates[2]);
+    for (int x = 0; x < data->coordinates[0]; ++x) {
+        for (int y = 0; y < data->coordinates[1]; ++y) {
+            for (int z = 0; z < data->coordinates[2]; ++z) {
                 copy.At(x, y, z) = At(x, y, z);
             }
         }
@@ -122,15 +155,17 @@ M3i M3i::Clone() const {
     return copy;
 };
 M3i& M3i::operator=(const M3i& copy) {
-    coordinates[0] = copy.Size(0);
+    /*coordinates[0] = copy.Size(0);
     coordinates[1] = copy.Size(1);
     coordinates[2] = copy.Size(2);
     box = copy.box;
-    ptr_counter = copy.ptr_counter + 1;
+    ptr_counter = copy.ptr_counter + 1;*/
+    data = copy.data;
+    data->ptr_counter++;
     return *this;
 }
 M3i& M3i::operator=(M3i&& copy) {
-    coordinates[0] = copy.Size(0);
+    /*coordinates[0] = copy.Size(0);
     coordinates[1] = copy.Size(1);
     coordinates[2] = copy.Size(2);
     box = copy.box;
@@ -140,7 +175,9 @@ M3i& M3i::operator=(M3i&& copy) {
     copy.coordinates[1] = 0;
     copy.coordinates[2] = 0;
     copy.box = nullptr;
-    copy.ptr_counter = 0;
+    copy.ptr_counter = 0;*/
+    data = copy.data;
+    copy.data = nullptr;
     return *this;
 }
 
@@ -159,43 +196,40 @@ std::ostream& M3i::WriteTo(std::ostream& strm) const noexcept
     return strm;
 }
 
-std::istream& M3i::ReadFrom (std::istream& istrm)
+std::istream& M3i::ReadFrom (std::istream& strm)
 {
-    std::string str;
-    int shape[3]  = {};
-    for (int i = 0; i < 3; ++i) {
-        if(!isdigit(istrm.peek())) {
-            istrm.clear(std::ios_base::failbit);
-            return istrm;
-        } else {
-            istrm >> shape[i];
-            if(!istrm.good())
+    std::string size;
+    strm >> size;
+    std::cout<<size<<"\n\r";
+    if (strm.rdstate() == std::ios_base::failbit || size != "size:") {
+        strm.setstate(std::ios_base::failbit);
+        return strm;
+    }
+    int x;
+    int y;
+    int z;
+    strm >> x >> y >> z;
+    if (strm.rdstate() == std::ios_base::failbit || x <= 0 || y <= 0 || z <= 0) {
+        strm.setstate(std::ios_base::failbit);
+        return strm;
+    }
+    *this = M3i(x, y, z);
+    for (int i = 0; i < x; ++i)
+    {
+        for (int j = 0; j < y; ++j)
+        {
+            for (int k = 0; k < z; ++k)
             {
-                istrm.clear(std::ios_base::failbit);
-                return istrm;
-            }
-            if( i != 2)
-                istrm.get();
-        }
-    }
-    if(shape[0] <= 0 || shape[1] <= 0 || shape[2] <= 0 || !istrm.good()) {
-        istrm.clear(std::ios_base::failbit);
-        return istrm;
-    }
-
-    Resize(shape[0], shape[1], shape[2]);
-    int buffer = 0;
-    for (int i = 0; i < Size(0); ++i) {
-        for (int j = 0; j < Size(1); ++j) {
-            for (int k = 0; k < Size(2); ++k) {
                 int number;
-                istrm >> number;
-                if(istrm.good())
-                    At(i, j, k) = number;
+                strm >> number;
+                if (strm.rdstate() == std::ios_base::failbit) {
+                    return strm;
+                }
+                At(i, j, k) = number;
             }
         }
     }
-    return istrm;
+    return strm;
 }
 
 std::ostream& operator << (std::ostream& strm, M3i& r) noexcept {

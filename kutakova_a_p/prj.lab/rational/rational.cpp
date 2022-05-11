@@ -35,6 +35,9 @@ Rational& Rational::operator*=(const Rational& right) {
     return *this;
 };
 Rational& Rational::operator/=(const Rational& right) {
+    if (right.numerator == 0){
+        throw std::invalid_argument("denominator must be not null");
+    }
     numerator = numerator * right.denominator;
     denominator *= right.numerator;
     normalize();
@@ -128,11 +131,15 @@ int Rational::NOD(int a, int b) {
 
 
 void Rational::normalize() {
+    if (denominator < 0){
+        numerator *= -1;
+        denominator *= -1;
+    }
     int divider = NOD(abs(numerator), abs(denominator));
     while (abs(divider) > 1) {
         numerator /= divider;
         denominator /= divider;
-        divider = NOD(numerator, denominator);
+        divider = NOD(abs(numerator), abs(denominator));
     }
 };
 
@@ -144,18 +151,17 @@ std::ostream& Rational::write_to(std::ostream& strm) const {
 
 std::istream& Rational::read_from(std::istream& strm) {
     char c;
-    int numerator;
-    int denominator;
-    strm >> numerator >> std::noskipws >> c >> denominator >> std::skipws;
+    int num;
+    int den;
+    strm >> num >> std::noskipws >> c >> den >> std::skipws;
     if (strm.fail()) {
         return strm;
     }
-    if (c != '/' || denominator <= 0) {
+    if (c != '/' || den <= 0) {
         strm.setstate(std::ios_base::failbit);
         return strm;
     }
-    *this = Rational(numerator, denominator);
-    return strm;
+    *this = Rational(num, den);
 }
 
 std::ostream& operator<<(std::ostream& ostr, const Rational& r){
