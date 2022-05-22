@@ -7,7 +7,7 @@
 #include "BitSet.h"
 
 
-/*
+
 bool operator==(const BitSet& l, const BitSet& r) {
     if (l.Size() != r.Size()) {
         return false;
@@ -25,13 +25,11 @@ TEST_CASE("construct"){
     CHECK(set.Size()==0);
 
     int size = 10;
-    BitSet set2(size, false);
-    BitSet set3(size, true);
+    const BitSet set2(size, false);
+    const BitSet set3(size, true);
     for (int i=0; i<size;++i){
-        bool t = set2[i];
-        CHECK(t == false);
-        t = set3[i];
-        CHECK(t == true);
+        CHECK(set2[i] == false);
+        CHECK(set3[i] == true);
     }
 
     BitSet set4(set3);
@@ -39,10 +37,8 @@ TEST_CASE("construct"){
     CHECK(set4.Size() == size);
     CHECK(set5.Size() == size);
     for (int i=0; i<size; ++i){
-        bool t = set4[i];
-        CHECK(t== true);
-        t = set5[i];
-        CHECK(t== true);
+        CHECK(set4[i]== true);
+        CHECK(set5[i]== true);
     }
 }
 
@@ -172,4 +168,4 @@ TEST_CASE("input/output"){
     }
 }
 
-*/
+

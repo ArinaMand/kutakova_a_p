@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBitSet.a  CMakeFiles/BitSet.dir/BitSet.cpp.o
+/usr/bin/ranlib libBitSet.a

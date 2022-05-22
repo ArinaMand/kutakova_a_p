@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My first three.js app</title>
+        <style>
+            body { margin: 0; }
+        </style>
+        <script src="three.js"></script>
+    </head>
+    <body>
+        <script src="three.js"></script>
+        <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+
+            const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+            camera.position.z = 5;
+
+            /*var reader = new FileReader();
+            reader.onload = function(event) {
+                var contents = event.target.result;
+                console.log("File contents: " + contents);
+            };
+
+            reader.onerror = function(event) {
+                console.error("File could not be read! Code " + event.target.error.code);
+            };
+
+            reader.readAsText("shell");*/
+
+
+            let points = [
+                -2, -1, 0, -2.82, 0, 0,
+                -2, -0.5, -0.5, -2, -1, 0,
+                -2, -0.5, -0.5, -2.82, 0, 0,
+                -2, 0, -1, -2, -0.5, -0.5,
+                -2, 0, -1, -2.82, 0, 0,
+                -2, 0, -1, -2, 0.5, -0.5,
+                -2, 0.5, -0.5, -2.82, 0, 0,
+                -2, 0.5, -0.5, -2, 1, 0,
+                -2.82, 0, 0, -2, 1, 0,
+                -2, 1, 0, -2, 0.5, 0.5,
+                -2.82, 0, 0, -2, 0.5, 0.5,
+                -2, 0.5, 0.5, -2, 0, 1,
+                -2.82, 0, 0, -2, 0, 1,
+                -2, -0.5, 0.5, -2, 0, 1,
+                -2.82, 0, 0, -2, -0.5, 0.5,
+                -2, -1, 0, -2, -0.5, 0.5,
+                0, -2, 0, -2, -1, 0,
+                -2, -0.5, -0.5, 0, -2, 0,
+                0, -0.5, -0.5, 0, -2, 0,
+                -2, -0.5, -0.5, 0, -0.5, -0.5,
+                0, 0, -2, 0, -0.5, -0.5,
+                0, 0, -2, -2, -0.5, -0.5,
+                0, 0, -2, -2, 0, -1,
+                0, 0, -2, -2, 0.5, -0.5,
+                0, 0, -2, 0, 0.5, -0.5,
+                -2, 0.5, -0.5, 0, 0.5, -0.5,
+                0, 0.5, -0.5, 0, 2, 0,
+                -2, 0.5, -0.5, 0, 2, 0,
+                -2, 1, 0, 0, 2, 0,
+                0, 2, 0, -2, 0.5, 0.5,
+                0, 2, 0, 0, 0.5, 0.5,
+                -2, 0.5, 0.5, 0, 0.5, 0.5,
+                0, 0.5, 0.5, 0, 0, 2,
+                -2, 0.5, 0.5, 0, 0, 2,
+                -2, 0, 1, 0, 0, 2,
+                -2, -0.5, 0.5, 0, 0, 2,
+                0, -0.5, 0.5, 0, 0, 2,
+                -2, -0.5, 0.5, 0, -0.5, 0.5,
+                0, -2, 0, 0, -0.5, 0.5,
+                2, -1, 0, 0, -0.5, 0.5,
+                2, -1, 0, -2, -0.5, 0.5,
+                0, -2, 0, 2, -1, 0,
+                2, -0.5, -0.5, 2, -1, 0,
+                2, -0.5, -0.5, 0, -2, 0,
+                0, -0.5, -0.5, 2, -0.5, -0.5,
+                0, 0, -2, 2, -0.5, -0.5,
+                2, 0, -1, 2, -0.5, -0.5,
+                0, 0, -2, 2, 0, -1,
+                2, 0, -1, 2, 0.5, -0.5,
+                0, 0, -2, 2, 0.5, -0.5,
+                0, 0.5, -0.5, 2, 0.5, -0.5,
+                2, 0.5, -0.5, 0, 2, 0,
+                2, 0.5, -0.5, 2, 1, 0,
+                2, 1, 0, 0, 2, 0,
+                2, 1, 0, 2, 0.5, 0.5,
+                0, 2, 0, 2, 0.5, 0.5,
+                0, 0.5, 0.5, 2, 0.5, 0.5,
+                2, 0.5, 0.5, 0, 0, 2,
+                2, 0.5, 0.5, 2, 0, 1,
+                2, 0, 1, 0, 0, 2,
+                2, -0.5, 0.5, 2, 0, 1,
+                2, -0.5, 0.5, 0, 0, 2,
+                0, -0.5, 0.5, 2, -0.5, 0.5,
+                2, -1, 0, 2, -0.5, 0.5,
+                2.82, 0, 0, 2, -0.5, 0.5,
+                2.82, 0, 0, 0, -0.5, 0.5,
+                2, -1, 0, 2.82, 0, 0,
+                2, -0.5, -0.5, 2.82, 0, 0,
+                2, 0, -1, 2.82, 0, 0,
+                2, 0.5, -0.5, 2.82, 0, 0,
+                2.82, 0, 0, 2, 1, 0,
+                2.82, 0, 0, 2, 0.5, 0.5,
+                2.82, 0, 0, 2, 0, 1,
+                2.82, 0, 0, 2, -0.5, 0.5,
+                2.82, 0, 0, 2.82, 0, 0];
+
+            let i = 0;
+            let s = points.length;
+            while(i<s){
+                const edge = [];
+                edge.push( new THREE.Vector3(points[i], points[i+1], points[i+2]));
+                edge.push( new THREE.Vector3(points[i+3], points[i+4], points[i+5]));
+                const geometry = new THREE.BufferGeometry().setFromPoints( edge );
+                const line = new THREE.Line( geometry, material );
+                scene.add( line );
+                i+=6;
+            }
+
+            let x_coef = 0.02;
+            let z_coef = -1;
+            let radious = 5;
+            camera.lookAt(scene.position);
+            let control = new function () {
+                this.rotSpeed = 0.005;
+                this.scale = 1;
+            };
+            renderer.render( scene, camera );
+            function animate() {
+                /*if (camera.position.x<=-1*radious || camera.position.x>=radious){
+                    //camera.position.x = (camera.position.x<0)? -radious: radious
+                    x_coef = -1*x_coef;
+                }
+                if (camera.position.z<=-1*radious || camera.position.z>=radious){
+                    z_coef*=-1;
+                }
+                camera.position.x += x_coef;
+                camera.position.z = z_coef*Math.sqrt(radious*radious-camera.position.x*camera.position.x);
+                camera.rotation.y += 0.005;*/
+                var x = camera.position.x;
+                var z = camera.position.z;
+
+                camera.position.x = x * Math.cos(control.rotSpeed) + z * Math.sin(control.rotSpeed);
+                camera.position.z = z * Math.cos(control.rotSpeed) - x * Math.sin(control.rotSpeed);
+
+                camera.lookAt(scene.position);
+
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+            }
+
+            animate();
+        </script>
+    </body>
+</html>

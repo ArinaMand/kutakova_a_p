@@ -25,7 +25,9 @@ BitSet::BitHolder::operator bool() const{
 BitSet::BitHolder::BitHolder(const bool val){
     value = val;
 }
-
+BitSet::BitHolder::BitHolder(const BitHolder& other){
+    value = other.Value();
+}
 
 
 BitSet::BitSet(){
@@ -112,7 +114,8 @@ BitSet::BitHolder BitSet::operator[](const int idx){
     return holder[idx];
 }
 bool BitSet::operator[](const int idx) const{
-    return holder[idx].Value();
+    bool t = holder[idx].Value();
+    return t;
 }
 
 const BitSet operator|(const BitSet& first, const BitSet& second){
