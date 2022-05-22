@@ -1,4 +1,0 @@
-/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/BitSet/CMakeFiles/rebuild_cache.dir
-/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/BitSet/CMakeFiles/BitSet.dir
-/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/BitSet/CMakeFiles/edit_cache.dir
-/home/arina/cafedra/kutakova_a_p/kutakova_a_p/prj.lab/BitSet/CMakeFiles/my_test.dir
